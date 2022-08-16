@@ -1,0 +1,344 @@
+[
+  {
+    "role": "accountAdmin",
+    "resource": "User",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "User",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Account",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Account",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Account",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Account",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Account",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Account",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Account",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Project",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Project",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Project",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Project",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Project",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Project",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Project",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Project",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Project",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Project",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Environment",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Environment",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Environment",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Environment",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Environment",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Environment",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Environment",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Environment",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "Environment",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Environment",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagDefinition",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagDefinition",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagDefinition",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagDefinition",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagDefinition",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagDefinition",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagDefinition",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagDefinition",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagDefinition",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagDefinition",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagConfiguration",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagConfiguration",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagConfiguration",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagConfiguration",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagConfiguration",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagConfiguration",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagConfiguration",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagConfiguration",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "accountAdmin",
+    "resource": "FlagConfiguration",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "FlagConfiguration",
+    "action": "read:any",
+    "attributes": "*"
+  }
+]
