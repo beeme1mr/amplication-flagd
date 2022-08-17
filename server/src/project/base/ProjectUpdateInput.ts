@@ -74,6 +74,6 @@ class ProjectUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  name?: string | null;
+  name?: string;
 }
 export { ProjectUpdateInput };

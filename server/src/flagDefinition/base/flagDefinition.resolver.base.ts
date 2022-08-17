@@ -25,7 +25,8 @@ import { DeleteFlagDefinitionArgs } from "./DeleteFlagDefinitionArgs";
 import { FlagDefinitionFindManyArgs } from "./FlagDefinitionFindManyArgs";
 import { FlagDefinitionFindUniqueArgs } from "./FlagDefinitionFindUniqueArgs";
 import { FlagDefinition } from "./FlagDefinition";
-import { ProjectFindManyArgs } from "../../project/base/ProjectFindManyArgs";
+import { FlagConfigurationFindManyArgs } from "../../flagConfiguration/base/FlagConfigurationFindManyArgs";
+import { FlagConfiguration } from "../../flagConfiguration/base/FlagConfiguration";
 import { Project } from "../../project/base/Project";
 import { FlagDefinitionService } from "../flagDefinition.service";
 
@@ -98,7 +99,13 @@ export class FlagDefinitionResolverBase {
   ): Promise<FlagDefinition> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        projects: {
+          connect: args.data.projects,
+        },
+      },
     });
   }
 
@@ -115,7 +122,13 @@ export class FlagDefinitionResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          projects: {
+            connect: args.data.projects,
+          },
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -149,22 +162,40 @@ export class FlagDefinitionResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Project])
+  @graphql.ResolveField(() => [FlagConfiguration])
   @nestAccessControl.UseRoles({
-    resource: "Project",
+    resource: "FlagConfiguration",
     action: "read",
     possession: "any",
   })
-  async projects(
+  async flagConfigurations(
     @graphql.Parent() parent: FlagDefinition,
-    @graphql.Args() args: ProjectFindManyArgs
-  ): Promise<Project[]> {
-    const results = await this.service.findProjects(parent.id, args);
+    @graphql.Args() args: FlagConfigurationFindManyArgs
+  ): Promise<FlagConfiguration[]> {
+    const results = await this.service.findFlagConfigurations(parent.id, args);
 
     if (!results) {
       return [];
     }
 
     return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Project, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Project",
+    action: "read",
+    possession: "any",
+  })
+  async projects(
+    @graphql.Parent() parent: FlagDefinition
+  ): Promise<Project | null> {
+    const result = await this.service.getProjects(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

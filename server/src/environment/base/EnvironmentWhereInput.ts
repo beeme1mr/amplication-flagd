@@ -42,14 +42,14 @@ class EnvironmentWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: StringFilter,
   })
-  @Type(() => StringNullableFilter)
+  @Type(() => StringFilter)
   @IsOptional()
-  @Field(() => StringNullableFilter, {
+  @Field(() => StringFilter, {
     nullable: true,
   })
-  name?: StringNullableFilter;
+  name?: StringFilter;
 
   @ApiProperty({
     required: false,

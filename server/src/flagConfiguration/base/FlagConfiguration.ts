@@ -11,9 +11,20 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, ValidateNested, IsOptional, IsString } from "class-validator";
+import {
+  IsDate,
+  IsString,
+  ValidateNested,
+  IsEnum,
+  IsJSON,
+  IsOptional,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { Environment } from "../../environment/base/Environment";
+import { FlagDefinition } from "../../flagDefinition/base/FlagDefinition";
+import { EnumFlagConfigurationState } from "./EnumFlagConfigurationState";
+import { GraphQLJSONObject } from "graphql-type-json";
+import { JsonValue } from "type-fest";
 @ObjectType()
 class FlagConfiguration {
   @ApiProperty({
@@ -25,13 +36,28 @@ class FlagConfiguration {
   createdAt!: Date;
 
   @ApiProperty({
-    required: false,
-    type: () => [Environment],
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  defaultVariant!: string;
+
+  @ApiProperty({
+    required: true,
+    type: () => Environment,
   })
   @ValidateNested()
   @Type(() => Environment)
-  @IsOptional()
-  environments?: Array<Environment>;
+  environments?: Environment;
+
+  @ApiProperty({
+    required: true,
+    type: () => FlagDefinition,
+  })
+  @ValidateNested()
+  @Type(() => FlagDefinition)
+  flagDefinition?: FlagDefinition;
 
   @ApiProperty({
     required: true,
@@ -40,6 +66,26 @@ class FlagConfiguration {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumFlagConfigurationState,
+  })
+  @IsEnum(EnumFlagConfigurationState)
+  @Field(() => EnumFlagConfigurationState, {
+    nullable: true,
+  })
+  state?: "ENABLED" | "DISABLED";
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSONObject, {
+    nullable: true,
+  })
+  targeting!: JsonValue;
 
   @ApiProperty({
     required: true,

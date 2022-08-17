@@ -4,6 +4,6 @@ import { ProjectWhereUniqueInput } from "../project/ProjectWhereUniqueInput";
 export type EnvironmentCreateInput = {
   description?: string | null;
   flagConfiguration?: FlagConfigurationCreateNestedManyWithoutEnvironmentsInput;
-  name?: string | null;
+  name: string;
   project: ProjectWhereUniqueInput;
 };

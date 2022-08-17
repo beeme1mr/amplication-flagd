@@ -27,9 +27,9 @@ import { FlagDefinitionWhereUniqueInput } from "./FlagDefinitionWhereUniqueInput
 import { FlagDefinitionFindManyArgs } from "./FlagDefinitionFindManyArgs";
 import { FlagDefinitionUpdateInput } from "./FlagDefinitionUpdateInput";
 import { FlagDefinition } from "./FlagDefinition";
-import { ProjectFindManyArgs } from "../../project/base/ProjectFindManyArgs";
-import { Project } from "../../project/base/Project";
-import { ProjectWhereUniqueInput } from "../../project/base/ProjectWhereUniqueInput";
+import { FlagConfigurationFindManyArgs } from "../../flagConfiguration/base/FlagConfigurationFindManyArgs";
+import { FlagConfiguration } from "../../flagConfiguration/base/FlagConfiguration";
+import { FlagConfigurationWhereUniqueInput } from "../../flagConfiguration/base/FlagConfigurationWhereUniqueInput";
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class FlagDefinitionControllerBase {
@@ -51,11 +51,24 @@ export class FlagDefinitionControllerBase {
     @common.Body() data: FlagDefinitionCreateInput
   ): Promise<FlagDefinition> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        projects: {
+          connect: data.projects,
+        },
+      },
       select: {
         createdAt: true,
         id: true,
         key: true,
+
+        projects: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
         variants: true,
       },
@@ -80,6 +93,13 @@ export class FlagDefinitionControllerBase {
         createdAt: true,
         id: true,
         key: true,
+
+        projects: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
         variants: true,
       },
@@ -105,6 +125,13 @@ export class FlagDefinitionControllerBase {
         createdAt: true,
         id: true,
         key: true,
+
+        projects: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
         variants: true,
       },
@@ -134,11 +161,24 @@ export class FlagDefinitionControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          projects: {
+            connect: data.projects,
+          },
+        },
         select: {
           createdAt: true,
           id: true,
           key: true,
+
+          projects: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
           variants: true,
         },
@@ -172,6 +212,13 @@ export class FlagDefinitionControllerBase {
           createdAt: true,
           id: true,
           key: true,
+
+          projects: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
           variants: true,
         },
@@ -188,30 +235,38 @@ export class FlagDefinitionControllerBase {
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @nestAccessControl.UseRoles({
-    resource: "Project",
+    resource: "FlagConfiguration",
     action: "read",
     possession: "any",
   })
-  @common.Get("/:id/projects")
-  @ApiNestedQuery(ProjectFindManyArgs)
-  async findManyProjects(
+  @common.Get("/:id/flagConfigurations")
+  @ApiNestedQuery(FlagConfigurationFindManyArgs)
+  async findManyFlagConfigurations(
     @common.Req() request: Request,
     @common.Param() params: FlagDefinitionWhereUniqueInput
-  ): Promise<Project[]> {
-    const query = plainToClass(ProjectFindManyArgs, request.query);
-    const results = await this.service.findProjects(params.id, {
+  ): Promise<FlagConfiguration[]> {
+    const query = plainToClass(FlagConfigurationFindManyArgs, request.query);
+    const results = await this.service.findFlagConfigurations(params.id, {
       ...query,
       select: {
-        account: {
+        createdAt: true,
+        defaultVariant: true,
+
+        environments: {
           select: {
             id: true,
           },
         },
 
-        createdAt: true,
-        description: true,
+        flagDefinition: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
-        name: true,
+        state: true,
+        targeting: true,
         updatedAt: true,
       },
     });
@@ -228,13 +283,13 @@ export class FlagDefinitionControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Post("/:id/projects")
-  async connectProjects(
+  @common.Post("/:id/flagConfigurations")
+  async connectFlagConfigurations(
     @common.Param() params: FlagDefinitionWhereUniqueInput,
-    @common.Body() body: ProjectWhereUniqueInput[]
+    @common.Body() body: FlagConfigurationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      projects: {
+      flagConfigurations: {
         connect: body,
       },
     };
@@ -250,13 +305,13 @@ export class FlagDefinitionControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Patch("/:id/projects")
-  async updateProjects(
+  @common.Patch("/:id/flagConfigurations")
+  async updateFlagConfigurations(
     @common.Param() params: FlagDefinitionWhereUniqueInput,
-    @common.Body() body: ProjectWhereUniqueInput[]
+    @common.Body() body: FlagConfigurationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      projects: {
+      flagConfigurations: {
         set: body,
       },
     };
@@ -272,13 +327,13 @@ export class FlagDefinitionControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Delete("/:id/projects")
-  async disconnectProjects(
+  @common.Delete("/:id/flagConfigurations")
+  async disconnectFlagConfigurations(
     @common.Param() params: FlagDefinitionWhereUniqueInput,
-    @common.Body() body: ProjectWhereUniqueInput[]
+    @common.Body() body: FlagConfigurationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      projects: {
+      flagConfigurations: {
         disconnect: body,
       },
     };

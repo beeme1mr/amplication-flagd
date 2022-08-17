@@ -11,21 +11,75 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { EnvironmentUpdateManyWithoutFlagConfigurationsInput } from "./EnvironmentUpdateManyWithoutFlagConfigurationsInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import {
+  IsString,
+  IsOptional,
+  ValidateNested,
+  IsEnum,
+  IsJSON,
+} from "class-validator";
+import { EnvironmentWhereUniqueInput } from "../../environment/base/EnvironmentWhereUniqueInput";
 import { Type } from "class-transformer";
+import { FlagDefinitionWhereUniqueInput } from "../../flagDefinition/base/FlagDefinitionWhereUniqueInput";
+import { EnumFlagConfigurationState } from "./EnumFlagConfigurationState";
+import { GraphQLJSONObject } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 @InputType()
 class FlagConfigurationUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => EnvironmentUpdateManyWithoutFlagConfigurationsInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => EnvironmentUpdateManyWithoutFlagConfigurationsInput)
+  @IsString()
   @IsOptional()
-  @Field(() => EnvironmentUpdateManyWithoutFlagConfigurationsInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  environments?: EnvironmentUpdateManyWithoutFlagConfigurationsInput;
+  defaultVariant?: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => EnvironmentWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => EnvironmentWhereUniqueInput)
+  @IsOptional()
+  @Field(() => EnvironmentWhereUniqueInput, {
+    nullable: true,
+  })
+  environments?: EnvironmentWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => FlagDefinitionWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => FlagDefinitionWhereUniqueInput)
+  @IsOptional()
+  @Field(() => FlagDefinitionWhereUniqueInput, {
+    nullable: true,
+  })
+  flagDefinition?: FlagDefinitionWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumFlagConfigurationState,
+  })
+  @IsEnum(EnumFlagConfigurationState)
+  @IsOptional()
+  @Field(() => EnumFlagConfigurationState, {
+    nullable: true,
+  })
+  state?: "ENABLED" | "DISABLED";
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSONObject, {
+    nullable: true,
+  })
+  targeting?: InputJsonValue;
 }
 export { FlagConfigurationUpdateInput };

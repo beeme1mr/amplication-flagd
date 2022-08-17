@@ -1,8 +1,10 @@
-import { ProjectUpdateManyWithoutFlagDefinitionsInput } from "./ProjectUpdateManyWithoutFlagDefinitionsInput";
+import { FlagConfigurationUpdateManyWithoutFlagDefinitionsInput } from "./FlagConfigurationUpdateManyWithoutFlagDefinitionsInput";
+import { ProjectWhereUniqueInput } from "../project/ProjectWhereUniqueInput";
 import { InputJsonValue } from "../../types";
 
 export type FlagDefinitionUpdateInput = {
-  key?: string | null;
-  projects?: ProjectUpdateManyWithoutFlagDefinitionsInput;
+  flagConfigurations?: FlagConfigurationUpdateManyWithoutFlagDefinitionsInput;
+  key?: string;
+  projects?: ProjectWhereUniqueInput;
   variants?: InputJsonValue;
 };

@@ -10,21 +10,17 @@ https://docs.amplication.com/docs/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
+import { FlagConfigurationWhereUniqueInput } from "../../flagConfiguration/base/FlagConfigurationWhereUniqueInput";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
-import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
 @InputType()
-class FlagConfigurationWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
+class FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput {
+  @Field(() => [FlagConfigurationWhereUniqueInput], {
     nullable: true,
   })
-  id?: StringFilter;
+  @ApiProperty({
+    required: false,
+    type: () => [FlagConfigurationWhereUniqueInput],
+  })
+  connect?: Array<FlagConfigurationWhereUniqueInput>;
 }
-export { FlagConfigurationWhereInput };
+export { FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput };

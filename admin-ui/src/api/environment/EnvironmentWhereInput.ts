@@ -5,6 +5,6 @@ import { ProjectWhereUniqueInput } from "../project/ProjectWhereUniqueInput";
 export type EnvironmentWhereInput = {
   description?: StringNullableFilter;
   id?: StringFilter;
-  name?: StringNullableFilter;
+  name?: StringFilter;
   project?: ProjectWhereUniqueInput;
 };

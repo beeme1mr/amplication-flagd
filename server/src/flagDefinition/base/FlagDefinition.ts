@@ -13,12 +13,13 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsDate,
-  IsString,
-  IsOptional,
   ValidateNested,
+  IsOptional,
+  IsString,
   IsJSON,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { FlagConfiguration } from "../../flagConfiguration/base/FlagConfiguration";
 import { Project } from "../../project/base/Project";
 import { GraphQLJSONObject } from "graphql-type-json";
 import { JsonValue } from "type-fest";
@@ -33,6 +34,15 @@ class FlagDefinition {
   createdAt!: Date;
 
   @ApiProperty({
+    required: false,
+    type: () => [FlagConfiguration],
+  })
+  @ValidateNested()
+  @Type(() => FlagConfiguration)
+  @IsOptional()
+  flagConfigurations?: Array<FlagConfiguration>;
+
+  @ApiProperty({
     required: true,
     type: String,
   })
@@ -41,24 +51,20 @@ class FlagDefinition {
   id!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  key!: string | null;
+  @Field(() => String)
+  key!: string;
 
   @ApiProperty({
-    required: false,
-    type: () => [Project],
+    required: true,
+    type: () => Project,
   })
   @ValidateNested()
   @Type(() => Project)
-  @IsOptional()
-  projects?: Array<Project>;
+  projects?: Project;
 
   @ApiProperty({
     required: true,
@@ -69,13 +75,10 @@ class FlagDefinition {
   updatedAt!: Date;
 
   @ApiProperty({
-    required: false,
+    required: true,
   })
   @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSONObject, {
-    nullable: true,
-  })
+  @Field(() => GraphQLJSONObject)
   variants!: JsonValue;
 }
 export { FlagDefinition };

@@ -7,5 +7,5 @@ export type ProjectUpdateInput = {
   description?: string | null;
   environments?: EnvironmentUpdateManyWithoutProjectsInput;
   flag?: FlagDefinitionUpdateManyWithoutProjectsInput;
-  name?: string | null;
+  name?: string;
 };

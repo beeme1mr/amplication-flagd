@@ -27,9 +27,6 @@ import { FlagConfigurationWhereUniqueInput } from "./FlagConfigurationWhereUniqu
 import { FlagConfigurationFindManyArgs } from "./FlagConfigurationFindManyArgs";
 import { FlagConfigurationUpdateInput } from "./FlagConfigurationUpdateInput";
 import { FlagConfiguration } from "./FlagConfiguration";
-import { EnvironmentFindManyArgs } from "../../environment/base/EnvironmentFindManyArgs";
-import { Environment } from "../../environment/base/Environment";
-import { EnvironmentWhereUniqueInput } from "../../environment/base/EnvironmentWhereUniqueInput";
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class FlagConfigurationControllerBase {
@@ -51,10 +48,36 @@ export class FlagConfigurationControllerBase {
     @common.Body() data: FlagConfigurationCreateInput
   ): Promise<FlagConfiguration> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        environments: {
+          connect: data.environments,
+        },
+
+        flagDefinition: {
+          connect: data.flagDefinition,
+        },
+      },
       select: {
         createdAt: true,
+        defaultVariant: true,
+
+        environments: {
+          select: {
+            id: true,
+          },
+        },
+
+        flagDefinition: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
+        state: true,
+        targeting: true,
         updatedAt: true,
       },
     });
@@ -76,7 +99,23 @@ export class FlagConfigurationControllerBase {
       ...args,
       select: {
         createdAt: true,
+        defaultVariant: true,
+
+        environments: {
+          select: {
+            id: true,
+          },
+        },
+
+        flagDefinition: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
+        state: true,
+        targeting: true,
         updatedAt: true,
       },
     });
@@ -99,7 +138,23 @@ export class FlagConfigurationControllerBase {
       where: params,
       select: {
         createdAt: true,
+        defaultVariant: true,
+
+        environments: {
+          select: {
+            id: true,
+          },
+        },
+
+        flagDefinition: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
+        state: true,
+        targeting: true,
         updatedAt: true,
       },
     });
@@ -128,10 +183,36 @@ export class FlagConfigurationControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          environments: {
+            connect: data.environments,
+          },
+
+          flagDefinition: {
+            connect: data.flagDefinition,
+          },
+        },
         select: {
           createdAt: true,
+          defaultVariant: true,
+
+          environments: {
+            select: {
+              id: true,
+            },
+          },
+
+          flagDefinition: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
+          state: true,
+          targeting: true,
           updatedAt: true,
         },
       });
@@ -162,7 +243,23 @@ export class FlagConfigurationControllerBase {
         where: params,
         select: {
           createdAt: true,
+          defaultVariant: true,
+
+          environments: {
+            select: {
+              id: true,
+            },
+          },
+
+          flagDefinition: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
+          state: true,
+          targeting: true,
           updatedAt: true,
         },
       });
@@ -174,109 +271,5 @@ export class FlagConfigurationControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @nestAccessControl.UseRoles({
-    resource: "Environment",
-    action: "read",
-    possession: "any",
-  })
-  @common.Get("/:id/environments")
-  @ApiNestedQuery(EnvironmentFindManyArgs)
-  async findManyEnvironments(
-    @common.Req() request: Request,
-    @common.Param() params: FlagConfigurationWhereUniqueInput
-  ): Promise<Environment[]> {
-    const query = plainToClass(EnvironmentFindManyArgs, request.query);
-    const results = await this.service.findEnvironments(params.id, {
-      ...query,
-      select: {
-        createdAt: true,
-        description: true,
-        id: true,
-        name: true,
-
-        project: {
-          select: {
-            id: true,
-          },
-        },
-
-        updatedAt: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "FlagConfiguration",
-    action: "update",
-    possession: "any",
-  })
-  @common.Post("/:id/environments")
-  async connectEnvironments(
-    @common.Param() params: FlagConfigurationWhereUniqueInput,
-    @common.Body() body: EnvironmentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      environments: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "FlagConfiguration",
-    action: "update",
-    possession: "any",
-  })
-  @common.Patch("/:id/environments")
-  async updateEnvironments(
-    @common.Param() params: FlagConfigurationWhereUniqueInput,
-    @common.Body() body: EnvironmentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      environments: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "FlagConfiguration",
-    action: "update",
-    possession: "any",
-  })
-  @common.Delete("/:id/environments")
-  async disconnectEnvironments(
-    @common.Param() params: FlagConfigurationWhereUniqueInput,
-    @common.Body() body: EnvironmentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      environments: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 }

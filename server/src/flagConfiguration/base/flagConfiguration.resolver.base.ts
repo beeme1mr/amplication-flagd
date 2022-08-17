@@ -25,8 +25,8 @@ import { DeleteFlagConfigurationArgs } from "./DeleteFlagConfigurationArgs";
 import { FlagConfigurationFindManyArgs } from "./FlagConfigurationFindManyArgs";
 import { FlagConfigurationFindUniqueArgs } from "./FlagConfigurationFindUniqueArgs";
 import { FlagConfiguration } from "./FlagConfiguration";
-import { EnvironmentFindManyArgs } from "../../environment/base/EnvironmentFindManyArgs";
 import { Environment } from "../../environment/base/Environment";
+import { FlagDefinition } from "../../flagDefinition/base/FlagDefinition";
 import { FlagConfigurationService } from "../flagConfiguration.service";
 
 @graphql.Resolver(() => FlagConfiguration)
@@ -98,7 +98,17 @@ export class FlagConfigurationResolverBase {
   ): Promise<FlagConfiguration> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        environments: {
+          connect: args.data.environments,
+        },
+
+        flagDefinition: {
+          connect: args.data.flagDefinition,
+        },
+      },
     });
   }
 
@@ -115,7 +125,17 @@ export class FlagConfigurationResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          environments: {
+            connect: args.data.environments,
+          },
+
+          flagDefinition: {
+            connect: args.data.flagDefinition,
+          },
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -149,22 +169,38 @@ export class FlagConfigurationResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Environment])
+  @graphql.ResolveField(() => Environment, { nullable: true })
   @nestAccessControl.UseRoles({
     resource: "Environment",
     action: "read",
     possession: "any",
   })
   async environments(
-    @graphql.Parent() parent: FlagConfiguration,
-    @graphql.Args() args: EnvironmentFindManyArgs
-  ): Promise<Environment[]> {
-    const results = await this.service.findEnvironments(parent.id, args);
+    @graphql.Parent() parent: FlagConfiguration
+  ): Promise<Environment | null> {
+    const result = await this.service.getEnvironments(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
+    return result;
+  }
 
-    return results;
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => FlagDefinition, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "FlagDefinition",
+    action: "read",
+    possession: "any",
+  })
+  async flagDefinition(
+    @graphql.Parent() parent: FlagConfiguration
+  ): Promise<FlagDefinition | null> {
+    const result = await this.service.getFlagDefinition(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

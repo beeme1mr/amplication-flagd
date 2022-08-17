@@ -9,6 +9,6 @@ export type Project = {
   environments?: Array<Environment>;
   flag?: Array<FlagDefinition>;
   id: string;
-  name: string | null;
+  name: string;
   updatedAt: Date;
 };

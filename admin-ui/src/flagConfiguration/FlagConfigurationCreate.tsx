@@ -3,10 +3,12 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  TextInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 import { EnvironmentTitle } from "../environment/EnvironmentTitle";
+import { FlagDefinitionTitle } from "../flagDefinition/FlagDefinitionTitle";
 
 export const FlagConfigurationCreate = (
   props: CreateProps
@@ -14,14 +16,32 @@ export const FlagConfigurationCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="environments"
+        <TextInput label="Default Variant" source="defaultVariant" />
+        <ReferenceInput
+          source="environment.id"
           reference="Environment"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
+          label="Environments"
         >
-          <SelectArrayInput optionText={EnvironmentTitle} />
-        </ReferenceArrayInput>
+          <SelectInput optionText={EnvironmentTitle} />
+        </ReferenceInput>
+        <ReferenceInput
+          source="flagdefinition.id"
+          reference="FlagDefinition"
+          label="Flag Definition"
+        >
+          <SelectInput optionText={FlagDefinitionTitle} />
+        </ReferenceInput>
+        <SelectInput
+          source="state"
+          label="State"
+          choices={[
+            { label: "Enabled", value: "ENABLED" },
+            { label: "Disabled", value: "DISABLED" },
+          ]}
+          optionText="label"
+          optionValue="value"
+        />
+        <div />
       </SimpleForm>
     </Create>
   );

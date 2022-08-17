@@ -10,7 +10,12 @@ https://docs.amplication.com/docs/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "nestjs-prisma";
-import { Prisma, FlagDefinition, Project } from "@prisma/client";
+import {
+  Prisma,
+  FlagDefinition,
+  FlagConfiguration,
+  Project,
+} from "@prisma/client";
 
 export class FlagDefinitionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -47,14 +52,22 @@ export class FlagDefinitionServiceBase {
     return this.prisma.flagDefinition.delete(args);
   }
 
-  async findProjects(
+  async findFlagConfigurations(
     parentId: string,
-    args: Prisma.ProjectFindManyArgs
-  ): Promise<Project[]> {
+    args: Prisma.FlagConfigurationFindManyArgs
+  ): Promise<FlagConfiguration[]> {
     return this.prisma.flagDefinition
       .findUnique({
         where: { id: parentId },
       })
-      .projects(args);
+      .flagConfigurations(args);
+  }
+
+  async getProjects(parentId: string): Promise<Project | null> {
+    return this.prisma.flagDefinition
+      .findUnique({
+        where: { id: parentId },
+      })
+      .projects();
   }
 }

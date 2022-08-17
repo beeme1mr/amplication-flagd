@@ -5,6 +5,6 @@ import { ProjectListRelationFilter } from "../project/ProjectListRelationFilter"
 export type AccountWhereInput = {
   description?: StringNullableFilter;
   id?: StringFilter;
-  name?: StringNullableFilter;
+  name?: StringFilter;
   projects?: ProjectListRelationFilter;
 };

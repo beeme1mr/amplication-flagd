@@ -6,7 +6,7 @@ export type Environment = {
   description: string | null;
   flagConfiguration?: Array<FlagConfiguration>;
   id: string;
-  name: string | null;
+  name: string;
   project?: Project;
   updatedAt: Date;
 };
