@@ -62,6 +62,6 @@ class FlagDefinitionWhereInput {
   @Field(() => ProjectWhereUniqueInput, {
     nullable: true,
   })
-  projects?: ProjectWhereUniqueInput;
+  project?: ProjectWhereUniqueInput;
 }
 export { FlagDefinitionWhereInput };

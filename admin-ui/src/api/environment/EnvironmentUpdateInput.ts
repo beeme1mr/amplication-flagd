@@ -3,7 +3,7 @@ import { ProjectWhereUniqueInput } from "../project/ProjectWhereUniqueInput";
 
 export type EnvironmentUpdateInput = {
   description?: string | null;
-  flagConfiguration?: FlagConfigurationUpdateManyWithoutEnvironmentsInput;
+  flagConfigurations?: FlagConfigurationUpdateManyWithoutEnvironmentsInput;
   name?: string;
   project?: ProjectWhereUniqueInput;
 };

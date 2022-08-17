@@ -52,7 +52,7 @@ export class EnvironmentServiceBase {
     return this.prisma.environment.delete(args);
   }
 
-  async findFlagConfiguration(
+  async findFlagConfigurations(
     parentId: string,
     args: Prisma.FlagConfigurationFindManyArgs
   ): Promise<FlagConfiguration[]> {
@@ -60,7 +60,7 @@ export class EnvironmentServiceBase {
       .findUnique({
         where: { id: parentId },
       })
-      .flagConfiguration(args);
+      .flagConfigurations(args);
   }
 
   async getProject(parentId: string): Promise<Project | null> {

@@ -20,7 +20,7 @@ export const EnvironmentCreate = (props: CreateProps): React.ReactElement => {
       <SimpleForm>
         <TextInput label="Description" multiline source="description" />
         <ReferenceArrayInput
-          source="flagConfiguration"
+          source="flagConfigurations"
           reference="FlagConfiguration"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

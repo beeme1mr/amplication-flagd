@@ -4,7 +4,7 @@ import { InputJsonValue } from "../../types";
 
 export type FlagConfigurationCreateInput = {
   defaultVariant: string;
-  environments: EnvironmentWhereUniqueInput;
+  environment: EnvironmentWhereUniqueInput;
   flagDefinition: FlagDefinitionWhereUniqueInput;
   state: "ENABLED" | "DISABLED";
   targeting?: InputJsonValue;

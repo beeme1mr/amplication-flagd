@@ -63,11 +63,11 @@ export class FlagDefinitionServiceBase {
       .flagConfigurations(args);
   }
 
-  async getProjects(parentId: string): Promise<Project | null> {
+  async getProject(parentId: string): Promise<Project | null> {
     return this.prisma.flagDefinition
       .findUnique({
         where: { id: parentId },
       })
-      .projects();
+      .project();
   }
 }

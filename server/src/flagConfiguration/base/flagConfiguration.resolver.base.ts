@@ -101,8 +101,8 @@ export class FlagConfigurationResolverBase {
       data: {
         ...args.data,
 
-        environments: {
-          connect: args.data.environments,
+        environment: {
+          connect: args.data.environment,
         },
 
         flagDefinition: {
@@ -128,8 +128,8 @@ export class FlagConfigurationResolverBase {
         data: {
           ...args.data,
 
-          environments: {
-            connect: args.data.environments,
+          environment: {
+            connect: args.data.environment,
           },
 
           flagDefinition: {
@@ -175,10 +175,10 @@ export class FlagConfigurationResolverBase {
     action: "read",
     possession: "any",
   })
-  async environments(
+  async environment(
     @graphql.Parent() parent: FlagConfiguration
   ): Promise<Environment | null> {
-    const result = await this.service.getEnvironments(parent.id);
+    const result = await this.service.getEnvironment(parent.id);
 
     if (!result) {
       return null;

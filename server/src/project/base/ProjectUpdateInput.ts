@@ -63,7 +63,7 @@ class ProjectUpdateInput {
   @Field(() => FlagDefinitionUpdateManyWithoutProjectsInput, {
     nullable: true,
   })
-  flag?: FlagDefinitionUpdateManyWithoutProjectsInput;
+  flags?: FlagDefinitionUpdateManyWithoutProjectsInput;
 
   @ApiProperty({
     required: false,

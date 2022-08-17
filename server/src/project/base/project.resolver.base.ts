@@ -190,11 +190,11 @@ export class ProjectResolverBase {
     action: "read",
     possession: "any",
   })
-  async flag(
+  async flags(
     @graphql.Parent() parent: Project,
     @graphql.Args() args: FlagDefinitionFindManyArgs
   ): Promise<FlagDefinition[]> {
-    const results = await this.service.findFlag(parent.id, args);
+    const results = await this.service.findFlags(parent.id, args);
 
     if (!results) {
       return [];

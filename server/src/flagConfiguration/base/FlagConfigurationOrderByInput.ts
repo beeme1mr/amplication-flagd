@@ -43,7 +43,7 @@ class FlagConfigurationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  environmentsId?: SortOrder;
+  environmentId?: SortOrder;
 
   @ApiProperty({
     required: false,

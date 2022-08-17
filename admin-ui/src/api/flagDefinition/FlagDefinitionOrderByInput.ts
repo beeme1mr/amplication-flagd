@@ -4,7 +4,7 @@ export type FlagDefinitionOrderByInput = {
   createdAt?: SortOrder;
   id?: SortOrder;
   key?: SortOrder;
-  projectsId?: SortOrder;
+  projectId?: SortOrder;
   updatedAt?: SortOrder;
   variants?: SortOrder;
 };

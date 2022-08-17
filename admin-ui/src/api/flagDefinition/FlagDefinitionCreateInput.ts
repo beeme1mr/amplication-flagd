@@ -5,6 +5,6 @@ import { InputJsonValue } from "../../types";
 export type FlagDefinitionCreateInput = {
   flagConfigurations?: FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput;
   key: string;
-  projects: ProjectWhereUniqueInput;
+  project: ProjectWhereUniqueInput;
   variants: InputJsonValue;
 };

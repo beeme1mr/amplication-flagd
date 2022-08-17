@@ -23,11 +23,7 @@ export const FlagDefinitionList = (props: ListProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <TextField label="Key" source="key" />
-        <ReferenceField
-          label="Projects"
-          source="project.id"
-          reference="Project"
-        >
+        <ReferenceField label="Project" source="project.id" reference="Project">
           <TextField source={PROJECT_TITLE_FIELD} />
         </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />

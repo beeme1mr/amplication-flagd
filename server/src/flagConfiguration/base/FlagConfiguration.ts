@@ -49,7 +49,7 @@ class FlagConfiguration {
   })
   @ValidateNested()
   @Type(() => Environment)
-  environments?: Environment;
+  environment?: Environment;
 
   @ApiProperty({
     required: true,

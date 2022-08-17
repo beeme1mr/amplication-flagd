@@ -5,6 +5,6 @@ import { InputJsonValue } from "../../types";
 export type FlagDefinitionUpdateInput = {
   flagConfigurations?: FlagConfigurationUpdateManyWithoutFlagDefinitionsInput;
   key?: string;
-  projects?: ProjectWhereUniqueInput;
+  project?: ProjectWhereUniqueInput;
   variants?: InputJsonValue;
 };

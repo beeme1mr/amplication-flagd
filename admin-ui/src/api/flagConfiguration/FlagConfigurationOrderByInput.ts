@@ -3,7 +3,7 @@ import { SortOrder } from "../../util/SortOrder";
 export type FlagConfigurationOrderByInput = {
   createdAt?: SortOrder;
   defaultVariant?: SortOrder;
-  environmentsId?: SortOrder;
+  environmentId?: SortOrder;
   flagDefinitionId?: SortOrder;
   id?: SortOrder;
   state?: SortOrder;

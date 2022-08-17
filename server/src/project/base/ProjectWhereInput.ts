@@ -52,7 +52,7 @@ class ProjectWhereInput {
   @Field(() => FlagDefinitionListRelationFilter, {
     nullable: true,
   })
-  flag?: FlagDefinitionListRelationFilter;
+  flags?: FlagDefinitionListRelationFilter;
 
   @ApiProperty({
     required: false,

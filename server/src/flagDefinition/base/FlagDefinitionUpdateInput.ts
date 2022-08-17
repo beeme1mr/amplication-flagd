@@ -52,7 +52,7 @@ class FlagDefinitionUpdateInput {
   @Field(() => ProjectWhereUniqueInput, {
     nullable: true,
   })
-  projects?: ProjectWhereUniqueInput;
+  project?: ProjectWhereUniqueInput;
 
   @ApiProperty({
     required: false,

@@ -60,7 +60,7 @@ class ProjectCreateInput {
   @Field(() => FlagDefinitionCreateNestedManyWithoutProjectsInput, {
     nullable: true,
   })
-  flag?: FlagDefinitionCreateNestedManyWithoutProjectsInput;
+  flags?: FlagDefinitionCreateNestedManyWithoutProjectsInput;
 
   @ApiProperty({
     required: true,

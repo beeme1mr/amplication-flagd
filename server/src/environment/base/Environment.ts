@@ -43,7 +43,7 @@ class Environment {
   @ValidateNested()
   @Type(() => FlagConfiguration)
   @IsOptional()
-  flagConfiguration?: Array<FlagConfiguration>;
+  flagConfigurations?: Array<FlagConfiguration>;
 
   @ApiProperty({
     required: true,

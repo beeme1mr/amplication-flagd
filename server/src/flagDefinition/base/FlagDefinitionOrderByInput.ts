@@ -52,7 +52,7 @@ class FlagDefinitionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  projectsId?: SortOrder;
+  projectId?: SortOrder;
 
   @ApiProperty({
     required: false,

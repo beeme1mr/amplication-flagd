@@ -22,11 +22,7 @@ export const FlagDefinitionShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <TextField label="Key" source="key" />
-        <ReferenceField
-          label="Projects"
-          source="project.id"
-          reference="Project"
-        >
+        <ReferenceField label="Project" source="project.id" reference="Project">
           <TextField source={PROJECT_TITLE_FIELD} />
         </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />
@@ -40,7 +36,7 @@ export const FlagDefinitionShow = (props: ShowProps): React.ReactElement => {
             <DateField source="createdAt" label="Created At" />
             <TextField label="Default Variant" source="defaultVariant" />
             <ReferenceField
-              label="Environments"
+              label="Environment"
               source="environment.id"
               reference="Environment"
             >

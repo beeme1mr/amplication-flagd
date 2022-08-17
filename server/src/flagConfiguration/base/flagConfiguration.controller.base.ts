@@ -51,8 +51,8 @@ export class FlagConfigurationControllerBase {
       data: {
         ...data,
 
-        environments: {
-          connect: data.environments,
+        environment: {
+          connect: data.environment,
         },
 
         flagDefinition: {
@@ -63,7 +63,7 @@ export class FlagConfigurationControllerBase {
         createdAt: true,
         defaultVariant: true,
 
-        environments: {
+        environment: {
           select: {
             id: true,
           },
@@ -101,7 +101,7 @@ export class FlagConfigurationControllerBase {
         createdAt: true,
         defaultVariant: true,
 
-        environments: {
+        environment: {
           select: {
             id: true,
           },
@@ -140,7 +140,7 @@ export class FlagConfigurationControllerBase {
         createdAt: true,
         defaultVariant: true,
 
-        environments: {
+        environment: {
           select: {
             id: true,
           },
@@ -186,8 +186,8 @@ export class FlagConfigurationControllerBase {
         data: {
           ...data,
 
-          environments: {
-            connect: data.environments,
+          environment: {
+            connect: data.environment,
           },
 
           flagDefinition: {
@@ -198,7 +198,7 @@ export class FlagConfigurationControllerBase {
           createdAt: true,
           defaultVariant: true,
 
-          environments: {
+          environment: {
             select: {
               id: true,
             },
@@ -245,7 +245,7 @@ export class FlagConfigurationControllerBase {
           createdAt: true,
           defaultVariant: true,
 
-          environments: {
+          environment: {
             select: {
               id: true,
             },

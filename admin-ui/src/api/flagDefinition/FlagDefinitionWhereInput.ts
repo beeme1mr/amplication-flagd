@@ -6,5 +6,5 @@ export type FlagDefinitionWhereInput = {
   flagConfigurations?: FlagConfigurationListRelationFilter;
   id?: StringFilter;
   key?: StringFilter;
-  projects?: ProjectWhereUniqueInput;
+  project?: ProjectWhereUniqueInput;
 };
