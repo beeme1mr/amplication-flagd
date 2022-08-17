@@ -46,7 +46,7 @@ class FlagDefinitionCreateInput {
   @ValidateNested()
   @Type(() => ProjectWhereUniqueInput)
   @Field(() => ProjectWhereUniqueInput)
-  projects!: ProjectWhereUniqueInput;
+  project!: ProjectWhereUniqueInput;
 
   @ApiProperty({
     required: true,

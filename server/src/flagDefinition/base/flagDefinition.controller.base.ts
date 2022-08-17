@@ -54,8 +54,8 @@ export class FlagDefinitionControllerBase {
       data: {
         ...data,
 
-        projects: {
-          connect: data.projects,
+        project: {
+          connect: data.project,
         },
       },
       select: {
@@ -63,7 +63,7 @@ export class FlagDefinitionControllerBase {
         id: true,
         key: true,
 
-        projects: {
+        project: {
           select: {
             id: true,
           },
@@ -94,7 +94,7 @@ export class FlagDefinitionControllerBase {
         id: true,
         key: true,
 
-        projects: {
+        project: {
           select: {
             id: true,
           },
@@ -126,7 +126,7 @@ export class FlagDefinitionControllerBase {
         id: true,
         key: true,
 
-        projects: {
+        project: {
           select: {
             id: true,
           },
@@ -164,8 +164,8 @@ export class FlagDefinitionControllerBase {
         data: {
           ...data,
 
-          projects: {
-            connect: data.projects,
+          project: {
+            connect: data.project,
           },
         },
         select: {
@@ -173,7 +173,7 @@ export class FlagDefinitionControllerBase {
           id: true,
           key: true,
 
-          projects: {
+          project: {
             select: {
               id: true,
             },
@@ -213,7 +213,7 @@ export class FlagDefinitionControllerBase {
           id: true,
           key: true,
 
-          projects: {
+          project: {
             select: {
               id: true,
             },
@@ -252,7 +252,7 @@ export class FlagDefinitionControllerBase {
         createdAt: true,
         defaultVariant: true,
 
-        environments: {
+        environment: {
           select: {
             id: true,
           },

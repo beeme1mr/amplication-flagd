@@ -38,7 +38,7 @@ class EnvironmentCreateInput {
   @Field(() => FlagConfigurationCreateNestedManyWithoutEnvironmentsInput, {
     nullable: true,
   })
-  flagConfiguration?: FlagConfigurationCreateNestedManyWithoutEnvironmentsInput;
+  flagConfigurations?: FlagConfigurationCreateNestedManyWithoutEnvironmentsInput;
 
   @ApiProperty({
     required: true,

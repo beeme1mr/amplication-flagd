@@ -7,7 +7,7 @@ export type Project = {
   createdAt: Date;
   description: string | null;
   environments?: Array<Environment>;
-  flag?: Array<FlagDefinition>;
+  flags?: Array<FlagDefinition>;
   id: string;
   name: string;
   updatedAt: Date;

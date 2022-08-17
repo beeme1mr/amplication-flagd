@@ -47,7 +47,7 @@ class FlagConfigurationUpdateInput {
   @Field(() => EnvironmentWhereUniqueInput, {
     nullable: true,
   })
-  environments?: EnvironmentWhereUniqueInput;
+  environment?: EnvironmentWhereUniqueInput;
 
   @ApiProperty({
     required: false,

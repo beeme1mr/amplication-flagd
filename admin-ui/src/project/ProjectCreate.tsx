@@ -32,7 +32,7 @@ export const ProjectCreate = (props: CreateProps): React.ReactElement => {
           <SelectArrayInput optionText={EnvironmentTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="flag"
+          source="flags"
           reference="FlagDefinition"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

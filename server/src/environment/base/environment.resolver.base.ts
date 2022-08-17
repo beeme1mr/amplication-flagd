@@ -168,11 +168,11 @@ export class EnvironmentResolverBase {
     action: "read",
     possession: "any",
   })
-  async flagConfiguration(
+  async flagConfigurations(
     @graphql.Parent() parent: Environment,
     @graphql.Args() args: FlagConfigurationFindManyArgs
   ): Promise<FlagConfiguration[]> {
-    const results = await this.service.findFlagConfiguration(parent.id, args);
+    const results = await this.service.findFlagConfigurations(parent.id, args);
 
     if (!results) {
       return [];

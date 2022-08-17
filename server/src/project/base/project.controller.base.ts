@@ -339,21 +339,21 @@ export class ProjectControllerBase {
     action: "read",
     possession: "any",
   })
-  @common.Get("/:id/flag")
+  @common.Get("/:id/flags")
   @ApiNestedQuery(FlagDefinitionFindManyArgs)
-  async findManyFlag(
+  async findManyFlags(
     @common.Req() request: Request,
     @common.Param() params: ProjectWhereUniqueInput
   ): Promise<FlagDefinition[]> {
     const query = plainToClass(FlagDefinitionFindManyArgs, request.query);
-    const results = await this.service.findFlag(params.id, {
+    const results = await this.service.findFlags(params.id, {
       ...query,
       select: {
         createdAt: true,
         id: true,
         key: true,
 
-        projects: {
+        project: {
           select: {
             id: true,
           },
@@ -376,13 +376,13 @@ export class ProjectControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Post("/:id/flag")
-  async connectFlag(
+  @common.Post("/:id/flags")
+  async connectFlags(
     @common.Param() params: ProjectWhereUniqueInput,
     @common.Body() body: FlagDefinitionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      flag: {
+      flags: {
         connect: body,
       },
     };
@@ -398,13 +398,13 @@ export class ProjectControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Patch("/:id/flag")
-  async updateFlag(
+  @common.Patch("/:id/flags")
+  async updateFlags(
     @common.Param() params: ProjectWhereUniqueInput,
     @common.Body() body: FlagDefinitionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      flag: {
+      flags: {
         set: body,
       },
     };
@@ -420,13 +420,13 @@ export class ProjectControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Delete("/:id/flag")
-  async disconnectFlag(
+  @common.Delete("/:id/flags")
+  async disconnectFlags(
     @common.Param() params: ProjectWhereUniqueInput,
     @common.Body() body: FlagDefinitionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      flag: {
+      flags: {
         disconnect: body,
       },
     };

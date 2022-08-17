@@ -56,7 +56,7 @@ export const ProjectShow = (props: ShowProps): React.ReactElement => {
             <TextField label="ID" source="id" />
             <TextField label="Key" source="key" />
             <ReferenceField
-              label="Projects"
+              label="Project"
               source="project.id"
               reference="Project"
             >

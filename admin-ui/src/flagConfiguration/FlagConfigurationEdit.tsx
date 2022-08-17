@@ -18,7 +18,7 @@ export const FlagConfigurationEdit = (props: EditProps): React.ReactElement => {
         <ReferenceInput
           source="environment.id"
           reference="Environment"
-          label="Environments"
+          label="Environment"
         >
           <SelectInput optionText={EnvironmentTitle} />
         </ReferenceInput>

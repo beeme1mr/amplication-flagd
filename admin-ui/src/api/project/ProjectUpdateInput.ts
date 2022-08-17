@@ -6,6 +6,6 @@ export type ProjectUpdateInput = {
   account?: AccountWhereUniqueInput;
   description?: string | null;
   environments?: EnvironmentUpdateManyWithoutProjectsInput;
-  flag?: FlagDefinitionUpdateManyWithoutProjectsInput;
+  flags?: FlagDefinitionUpdateManyWithoutProjectsInput;
   name?: string;
 };

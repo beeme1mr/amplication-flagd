@@ -27,11 +27,7 @@ export const FlagDefinitionEdit = (props: EditProps): React.ReactElement => {
           <SelectArrayInput optionText={FlagConfigurationTitle} />
         </ReferenceArrayInput>
         <TextInput label="Key" source="key" />
-        <ReferenceInput
-          source="project.id"
-          reference="Project"
-          label="Projects"
-        >
+        <ReferenceInput source="project.id" reference="Project" label="Project">
           <SelectInput optionText={ProjectTitle} />
         </ReferenceInput>
         <div />

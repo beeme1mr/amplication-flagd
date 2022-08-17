@@ -38,7 +38,7 @@ class EnvironmentUpdateInput {
   @Field(() => FlagConfigurationUpdateManyWithoutEnvironmentsInput, {
     nullable: true,
   })
-  flagConfiguration?: FlagConfigurationUpdateManyWithoutEnvironmentsInput;
+  flagConfigurations?: FlagConfigurationUpdateManyWithoutEnvironmentsInput;
 
   @ApiProperty({
     required: false,

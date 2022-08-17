@@ -6,7 +6,7 @@ import { StringFilter } from "../../util/StringFilter";
 export type ProjectWhereInput = {
   description?: StringNullableFilter;
   environments?: EnvironmentListRelationFilter;
-  flag?: FlagDefinitionListRelationFilter;
+  flags?: FlagDefinitionListRelationFilter;
   id?: StringFilter;
   name?: StringFilter;
 };

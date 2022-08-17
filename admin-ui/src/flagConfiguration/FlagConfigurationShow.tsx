@@ -17,7 +17,7 @@ export const FlagConfigurationShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="Default Variant" source="defaultVariant" />
         <ReferenceField
-          label="Environments"
+          label="Environment"
           source="environment.id"
           reference="Environment"
         >

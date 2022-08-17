@@ -102,8 +102,8 @@ export class FlagDefinitionResolverBase {
       data: {
         ...args.data,
 
-        projects: {
-          connect: args.data.projects,
+        project: {
+          connect: args.data.project,
         },
       },
     });
@@ -125,8 +125,8 @@ export class FlagDefinitionResolverBase {
         data: {
           ...args.data,
 
-          projects: {
-            connect: args.data.projects,
+          project: {
+            connect: args.data.project,
           },
         },
       });
@@ -188,10 +188,10 @@ export class FlagDefinitionResolverBase {
     action: "read",
     possession: "any",
   })
-  async projects(
+  async project(
     @graphql.Parent() parent: FlagDefinition
   ): Promise<Project | null> {
-    const result = await this.service.getProjects(parent.id);
+    const result = await this.service.getProject(parent.id);
 
     if (!result) {
       return null;

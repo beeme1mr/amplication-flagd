@@ -239,20 +239,20 @@ export class EnvironmentControllerBase {
     action: "read",
     possession: "any",
   })
-  @common.Get("/:id/flagConfiguration")
+  @common.Get("/:id/flagConfigurations")
   @ApiNestedQuery(FlagConfigurationFindManyArgs)
-  async findManyFlagConfiguration(
+  async findManyFlagConfigurations(
     @common.Req() request: Request,
     @common.Param() params: EnvironmentWhereUniqueInput
   ): Promise<FlagConfiguration[]> {
     const query = plainToClass(FlagConfigurationFindManyArgs, request.query);
-    const results = await this.service.findFlagConfiguration(params.id, {
+    const results = await this.service.findFlagConfigurations(params.id, {
       ...query,
       select: {
         createdAt: true,
         defaultVariant: true,
 
-        environments: {
+        environment: {
           select: {
             id: true,
           },
@@ -283,13 +283,13 @@ export class EnvironmentControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Post("/:id/flagConfiguration")
-  async connectFlagConfiguration(
+  @common.Post("/:id/flagConfigurations")
+  async connectFlagConfigurations(
     @common.Param() params: EnvironmentWhereUniqueInput,
     @common.Body() body: FlagConfigurationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      flagConfiguration: {
+      flagConfigurations: {
         connect: body,
       },
     };
@@ -305,13 +305,13 @@ export class EnvironmentControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Patch("/:id/flagConfiguration")
-  async updateFlagConfiguration(
+  @common.Patch("/:id/flagConfigurations")
+  async updateFlagConfigurations(
     @common.Param() params: EnvironmentWhereUniqueInput,
     @common.Body() body: FlagConfigurationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      flagConfiguration: {
+      flagConfigurations: {
         set: body,
       },
     };
@@ -327,13 +327,13 @@ export class EnvironmentControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Delete("/:id/flagConfiguration")
-  async disconnectFlagConfiguration(
+  @common.Delete("/:id/flagConfigurations")
+  async disconnectFlagConfigurations(
     @common.Param() params: EnvironmentWhereUniqueInput,
     @common.Body() body: FlagConfigurationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      flagConfiguration: {
+      flagConfigurations: {
         disconnect: body,
       },
     };

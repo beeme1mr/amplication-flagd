@@ -52,12 +52,12 @@ export class FlagConfigurationServiceBase {
     return this.prisma.flagConfiguration.delete(args);
   }
 
-  async getEnvironments(parentId: string): Promise<Environment | null> {
+  async getEnvironment(parentId: string): Promise<Environment | null> {
     return this.prisma.flagConfiguration
       .findUnique({
         where: { id: parentId },
       })
-      .environments();
+      .environment();
   }
 
   async getFlagDefinition(parentId: string): Promise<FlagDefinition | null> {

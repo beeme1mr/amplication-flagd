@@ -64,7 +64,7 @@ export class ProjectServiceBase {
       .environments(args);
   }
 
-  async findFlag(
+  async findFlags(
     parentId: string,
     args: Prisma.FlagDefinitionFindManyArgs
   ): Promise<FlagDefinition[]> {
@@ -72,7 +72,7 @@ export class ProjectServiceBase {
       .findUnique({
         where: { id: parentId },
       })
-      .flag(args);
+      .flags(args);
   }
 
   async getAccount(parentId: string): Promise<Account | null> {

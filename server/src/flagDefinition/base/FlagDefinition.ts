@@ -64,7 +64,7 @@ class FlagDefinition {
   })
   @ValidateNested()
   @Type(() => Project)
-  projects?: Project;
+  project?: Project;
 
   @ApiProperty({
     required: true,

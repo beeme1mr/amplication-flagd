@@ -4,7 +4,7 @@ import { Project } from "../project/Project";
 export type Environment = {
   createdAt: Date;
   description: string | null;
-  flagConfiguration?: Array<FlagConfiguration>;
+  flagConfigurations?: Array<FlagConfiguration>;
   id: string;
   name: string;
   project?: Project;

@@ -5,7 +5,7 @@ import { JsonValue } from "type-fest";
 export type FlagConfiguration = {
   createdAt: Date;
   defaultVariant: string;
-  environments?: Environment;
+  environment?: Environment;
   flagDefinition?: FlagDefinition;
   id: string;
   state?: "ENABLED" | "DISABLED";

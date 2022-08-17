@@ -6,6 +6,6 @@ export type ProjectCreateInput = {
   account: AccountWhereUniqueInput;
   description?: string | null;
   environments?: EnvironmentCreateNestedManyWithoutProjectsInput;
-  flag?: FlagDefinitionCreateNestedManyWithoutProjectsInput;
+  flags?: FlagDefinitionCreateNestedManyWithoutProjectsInput;
   name: string;
 };

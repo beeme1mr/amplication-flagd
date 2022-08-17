@@ -41,7 +41,7 @@ class FlagConfigurationCreateInput {
   @ValidateNested()
   @Type(() => EnvironmentWhereUniqueInput)
   @Field(() => EnvironmentWhereUniqueInput)
-  environments!: EnvironmentWhereUniqueInput;
+  environment!: EnvironmentWhereUniqueInput;
 
   @ApiProperty({
     required: true,

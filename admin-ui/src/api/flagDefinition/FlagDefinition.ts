@@ -7,7 +7,7 @@ export type FlagDefinition = {
   flagConfigurations?: Array<FlagConfiguration>;
   id: string;
   key: string;
-  projects?: Project;
+  project?: Project;
   updatedAt: Date;
   variants: JsonValue;
 };
