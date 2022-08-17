@@ -2,6 +2,6 @@ import { ProjectCreateNestedManyWithoutAccountsInput } from "./ProjectCreateNest
 
 export type AccountCreateInput = {
   description?: string | null;
-  name?: string | null;
+  name: string;
   projects?: ProjectCreateNestedManyWithoutAccountsInput;
 };

@@ -7,5 +7,5 @@ export type ProjectCreateInput = {
   description?: string | null;
   environments?: EnvironmentCreateNestedManyWithoutProjectsInput;
   flag?: FlagDefinitionCreateNestedManyWithoutProjectsInput;
-  name?: string | null;
+  name: string;
 };

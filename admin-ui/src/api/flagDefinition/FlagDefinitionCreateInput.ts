@@ -1,8 +1,10 @@
-import { ProjectCreateNestedManyWithoutFlagDefinitionsInput } from "./ProjectCreateNestedManyWithoutFlagDefinitionsInput";
+import { FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput } from "./FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput";
+import { ProjectWhereUniqueInput } from "../project/ProjectWhereUniqueInput";
 import { InputJsonValue } from "../../types";
 
 export type FlagDefinitionCreateInput = {
-  key?: string | null;
-  projects?: ProjectCreateNestedManyWithoutFlagDefinitionsInput;
-  variants?: InputJsonValue;
+  flagConfigurations?: FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput;
+  key: string;
+  projects: ProjectWhereUniqueInput;
+  variants: InputJsonValue;
 };

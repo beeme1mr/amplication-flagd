@@ -250,7 +250,23 @@ export class EnvironmentControllerBase {
       ...query,
       select: {
         createdAt: true,
+        defaultVariant: true,
+
+        environments: {
+          select: {
+            id: true,
+          },
+        },
+
+        flagDefinition: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
+        state: true,
+        targeting: true,
         updatedAt: true,
       },
     });

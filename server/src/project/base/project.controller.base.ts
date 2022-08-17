@@ -352,6 +352,13 @@ export class ProjectControllerBase {
         createdAt: true,
         id: true,
         key: true,
+
+        projects: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
         variants: true,
       },

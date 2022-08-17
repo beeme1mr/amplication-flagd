@@ -2,6 +2,6 @@ import { ProjectUpdateManyWithoutAccountsInput } from "./ProjectUpdateManyWithou
 
 export type AccountUpdateInput = {
   description?: string | null;
-  name?: string | null;
+  name?: string;
   projects?: ProjectUpdateManyWithoutAccountsInput;
 };

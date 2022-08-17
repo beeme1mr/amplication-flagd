@@ -11,13 +11,25 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
+import { FlagConfigurationListRelationFilter } from "../../flagConfiguration/base/FlagConfigurationListRelationFilter";
+import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { ProjectListRelationFilter } from "../../project/base/ProjectListRelationFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { ProjectWhereUniqueInput } from "../../project/base/ProjectWhereUniqueInput";
 @InputType()
 class FlagDefinitionWhereInput {
+  @ApiProperty({
+    required: false,
+    type: () => FlagConfigurationListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => FlagConfigurationListRelationFilter)
+  @IsOptional()
+  @Field(() => FlagConfigurationListRelationFilter, {
+    nullable: true,
+  })
+  flagConfigurations?: FlagConfigurationListRelationFilter;
+
   @ApiProperty({
     required: false,
     type: StringFilter,
@@ -31,25 +43,25 @@ class FlagDefinitionWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: StringFilter,
   })
-  @Type(() => StringNullableFilter)
+  @Type(() => StringFilter)
   @IsOptional()
-  @Field(() => StringNullableFilter, {
+  @Field(() => StringFilter, {
     nullable: true,
   })
-  key?: StringNullableFilter;
+  key?: StringFilter;
 
   @ApiProperty({
     required: false,
-    type: () => ProjectListRelationFilter,
+    type: () => ProjectWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => ProjectListRelationFilter)
+  @Type(() => ProjectWhereUniqueInput)
   @IsOptional()
-  @Field(() => ProjectListRelationFilter, {
+  @Field(() => ProjectWhereUniqueInput, {
     nullable: true,
   })
-  projects?: ProjectListRelationFilter;
+  projects?: ProjectWhereUniqueInput;
 }
 export { FlagDefinitionWhereInput };

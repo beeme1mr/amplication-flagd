@@ -10,7 +10,12 @@ https://docs.amplication.com/docs/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "nestjs-prisma";
-import { Prisma, FlagConfiguration, Environment } from "@prisma/client";
+import {
+  Prisma,
+  FlagConfiguration,
+  Environment,
+  FlagDefinition,
+} from "@prisma/client";
 
 export class FlagConfigurationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -47,14 +52,19 @@ export class FlagConfigurationServiceBase {
     return this.prisma.flagConfiguration.delete(args);
   }
 
-  async findEnvironments(
-    parentId: string,
-    args: Prisma.EnvironmentFindManyArgs
-  ): Promise<Environment[]> {
+  async getEnvironments(parentId: string): Promise<Environment | null> {
     return this.prisma.flagConfiguration
       .findUnique({
         where: { id: parentId },
       })
-      .environments(args);
+      .environments();
+  }
+
+  async getFlagDefinition(parentId: string): Promise<FlagDefinition | null> {
+    return this.prisma.flagConfiguration
+      .findUnique({
+        where: { id: parentId },
+      })
+      .flagDefinition();
   }
 }

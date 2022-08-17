@@ -11,21 +11,63 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { EnvironmentCreateNestedManyWithoutFlagConfigurationsInput } from "./EnvironmentCreateNestedManyWithoutFlagConfigurationsInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import {
+  IsString,
+  ValidateNested,
+  IsEnum,
+  IsJSON,
+  IsOptional,
+} from "class-validator";
+import { EnvironmentWhereUniqueInput } from "../../environment/base/EnvironmentWhereUniqueInput";
 import { Type } from "class-transformer";
+import { FlagDefinitionWhereUniqueInput } from "../../flagDefinition/base/FlagDefinitionWhereUniqueInput";
+import { EnumFlagConfigurationState } from "./EnumFlagConfigurationState";
+import { GraphQLJSONObject } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 @InputType()
 class FlagConfigurationCreateInput {
   @ApiProperty({
-    required: false,
-    type: () => EnvironmentCreateNestedManyWithoutFlagConfigurationsInput,
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  defaultVariant!: string;
+
+  @ApiProperty({
+    required: true,
+    type: () => EnvironmentWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => EnvironmentCreateNestedManyWithoutFlagConfigurationsInput)
+  @Type(() => EnvironmentWhereUniqueInput)
+  @Field(() => EnvironmentWhereUniqueInput)
+  environments!: EnvironmentWhereUniqueInput;
+
+  @ApiProperty({
+    required: true,
+    type: () => FlagDefinitionWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => FlagDefinitionWhereUniqueInput)
+  @Field(() => FlagDefinitionWhereUniqueInput)
+  flagDefinition!: FlagDefinitionWhereUniqueInput;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumFlagConfigurationState,
+  })
+  @IsEnum(EnumFlagConfigurationState)
+  @Field(() => EnumFlagConfigurationState)
+  state!: "ENABLED" | "DISABLED";
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
   @IsOptional()
-  @Field(() => EnvironmentCreateNestedManyWithoutFlagConfigurationsInput, {
+  @Field(() => GraphQLJSONObject, {
     nullable: true,
   })
-  environments?: EnvironmentCreateNestedManyWithoutFlagConfigurationsInput;
+  targeting?: InputJsonValue;
 }
 export { FlagConfigurationCreateInput };

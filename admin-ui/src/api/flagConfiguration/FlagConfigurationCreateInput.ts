@@ -1,5 +1,11 @@
-import { EnvironmentCreateNestedManyWithoutFlagConfigurationsInput } from "./EnvironmentCreateNestedManyWithoutFlagConfigurationsInput";
+import { EnvironmentWhereUniqueInput } from "../environment/EnvironmentWhereUniqueInput";
+import { FlagDefinitionWhereUniqueInput } from "../flagDefinition/FlagDefinitionWhereUniqueInput";
+import { InputJsonValue } from "../../types";
 
 export type FlagConfigurationCreateInput = {
-  environments?: EnvironmentCreateNestedManyWithoutFlagConfigurationsInput;
+  defaultVariant: string;
+  environments: EnvironmentWhereUniqueInput;
+  flagDefinition: FlagDefinitionWhereUniqueInput;
+  state: "ENABLED" | "DISABLED";
+  targeting?: InputJsonValue;
 };

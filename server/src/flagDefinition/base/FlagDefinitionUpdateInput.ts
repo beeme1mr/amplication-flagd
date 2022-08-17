@@ -11,13 +11,26 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested, IsJSON } from "class-validator";
-import { ProjectUpdateManyWithoutFlagDefinitionsInput } from "./ProjectUpdateManyWithoutFlagDefinitionsInput";
+import { FlagConfigurationUpdateManyWithoutFlagDefinitionsInput } from "./FlagConfigurationUpdateManyWithoutFlagDefinitionsInput";
+import { ValidateNested, IsOptional, IsString, IsJSON } from "class-validator";
 import { Type } from "class-transformer";
+import { ProjectWhereUniqueInput } from "../../project/base/ProjectWhereUniqueInput";
 import { GraphQLJSONObject } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 @InputType()
 class FlagDefinitionUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: () => FlagConfigurationUpdateManyWithoutFlagDefinitionsInput,
+  })
+  @ValidateNested()
+  @Type(() => FlagConfigurationUpdateManyWithoutFlagDefinitionsInput)
+  @IsOptional()
+  @Field(() => FlagConfigurationUpdateManyWithoutFlagDefinitionsInput, {
+    nullable: true,
+  })
+  flagConfigurations?: FlagConfigurationUpdateManyWithoutFlagDefinitionsInput;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -27,19 +40,19 @@ class FlagDefinitionUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  key?: string | null;
+  key?: string;
 
   @ApiProperty({
     required: false,
-    type: () => ProjectUpdateManyWithoutFlagDefinitionsInput,
+    type: () => ProjectWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => ProjectUpdateManyWithoutFlagDefinitionsInput)
+  @Type(() => ProjectWhereUniqueInput)
   @IsOptional()
-  @Field(() => ProjectUpdateManyWithoutFlagDefinitionsInput, {
+  @Field(() => ProjectWhereUniqueInput, {
     nullable: true,
   })
-  projects?: ProjectUpdateManyWithoutFlagDefinitionsInput;
+  projects?: ProjectWhereUniqueInput;
 
   @ApiProperty({
     required: false,

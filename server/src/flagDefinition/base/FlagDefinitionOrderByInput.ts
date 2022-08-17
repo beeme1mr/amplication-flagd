@@ -52,6 +52,15 @@ class FlagDefinitionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  projectsId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   updatedAt?: SortOrder;
 
   @ApiProperty({

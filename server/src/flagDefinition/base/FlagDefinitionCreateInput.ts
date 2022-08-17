@@ -11,44 +11,48 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested, IsJSON } from "class-validator";
-import { ProjectCreateNestedManyWithoutFlagDefinitionsInput } from "./ProjectCreateNestedManyWithoutFlagDefinitionsInput";
+import { FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput } from "./FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput";
+import { ValidateNested, IsOptional, IsString, IsJSON } from "class-validator";
 import { Type } from "class-transformer";
+import { ProjectWhereUniqueInput } from "../../project/base/ProjectWhereUniqueInput";
 import { GraphQLJSONObject } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 @InputType()
 class FlagDefinitionCreateInput {
   @ApiProperty({
     required: false,
+    type: () => FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput,
+  })
+  @ValidateNested()
+  @Type(() => FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput)
+  @IsOptional()
+  @Field(() => FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput, {
+    nullable: true,
+  })
+  flagConfigurations?: FlagConfigurationCreateNestedManyWithoutFlagDefinitionsInput;
+
+  @ApiProperty({
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  key?: string | null;
+  @Field(() => String)
+  key!: string;
 
   @ApiProperty({
-    required: false,
-    type: () => ProjectCreateNestedManyWithoutFlagDefinitionsInput,
+    required: true,
+    type: () => ProjectWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => ProjectCreateNestedManyWithoutFlagDefinitionsInput)
-  @IsOptional()
-  @Field(() => ProjectCreateNestedManyWithoutFlagDefinitionsInput, {
-    nullable: true,
-  })
-  projects?: ProjectCreateNestedManyWithoutFlagDefinitionsInput;
+  @Type(() => ProjectWhereUniqueInput)
+  @Field(() => ProjectWhereUniqueInput)
+  projects!: ProjectWhereUniqueInput;
 
   @ApiProperty({
-    required: false,
+    required: true,
   })
   @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSONObject, {
-    nullable: true,
-  })
-  variants?: InputJsonValue;
+  @Field(() => GraphQLJSONObject)
+  variants!: InputJsonValue;
 }
 export { FlagDefinitionCreateInput };

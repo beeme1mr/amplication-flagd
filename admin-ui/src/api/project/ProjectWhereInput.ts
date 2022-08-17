@@ -8,5 +8,5 @@ export type ProjectWhereInput = {
   environments?: EnvironmentListRelationFilter;
   flag?: FlagDefinitionListRelationFilter;
   id?: StringFilter;
-  name?: StringNullableFilter;
+  name?: StringFilter;
 };

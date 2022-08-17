@@ -22,7 +22,7 @@ model Account {
   createdAt   DateTime  @default(now())
   description String?
   id          String    @id @default(cuid())
-  name        String?
+  name        String
   projects    Project[]
   updatedAt   DateTime  @updatedAt
 }
@@ -35,7 +35,7 @@ model Project {
   environments Environment[]
   flag         FlagDefinition[]
   id           String           @id @default(cuid())
-  name         String?
+  name         String
   updatedAt    DateTime         @updatedAt
 }
 
@@ -44,24 +44,37 @@ model Environment {
   description       String?
   flagConfiguration FlagConfiguration[]
   id                String              @id @default(cuid())
-  name              String?
+  name              String
   project           Project             @relation(fields: [projectId], references: [id])
   projectId         String
   updatedAt         DateTime            @updatedAt
 }
 
 model FlagDefinition {
-  createdAt DateTime  @default(now())
-  id        String    @id @default(cuid())
-  key       String?
-  projects  Project[]
-  updatedAt DateTime  @updatedAt
-  variants  Json?
+  createdAt          DateTime            @default(now())
+  flagConfigurations FlagConfiguration[]
+  id                 String              @id @default(cuid())
+  key                String
+  projects           Project             @relation(fields: [projectsId], references: [id])
+  projectsId         String
+  updatedAt          DateTime            @updatedAt
+  variants           Json
 }
 
 model FlagConfiguration {
-  createdAt    DateTime      @default(now())
-  environments Environment[]
-  id           String        @id @default(cuid())
-  updatedAt    DateTime      @updatedAt
+  createdAt        DateTime                   @default(now())
+  defaultVariant   String
+  environments     Environment                @relation(fields: [environmentsId], references: [id])
+  environmentsId   String
+  flagDefinition   FlagDefinition             @relation(fields: [flagDefinitionId], references: [id])
+  flagDefinitionId String
+  id               String                     @id @default(cuid())
+  state            EnumFlagConfigurationState
+  targeting        Json?
+  updatedAt        DateTime                   @updatedAt
+}
+
+enum EnumFlagConfigurationState {
+  ENABLED
+  DISABLED
 }

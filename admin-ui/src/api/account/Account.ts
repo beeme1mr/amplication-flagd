@@ -4,7 +4,7 @@ export type Account = {
   createdAt: Date;
   description: string | null;
   id: string;
-  name: string | null;
+  name: string;
   projects?: Array<Project>;
   updatedAt: Date;
 };
