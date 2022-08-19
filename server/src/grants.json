@@ -105,13 +105,7 @@
     "role": "accountAdmin",
     "resource": "Project",
     "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Project",
-    "action": "read:own",
-    "attributes": "*"
+    "attributes": "*,!account"
   },
   {
     "role": "accountAdmin",
